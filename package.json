@@ -1,11 +1,11 @@
 {
   "name": "cool-sessions",
   "version": "1.0.0",
-  "description": "A simple session ID generator for bot sessions",
-  "main": "bot.js",
+  "description": "Secure session ID generator for bots",
+  "main": "index.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js"
   },
-  "author": "Your Name",
+  "author": "darkdev-tech",
   "license": "MIT"
 }
