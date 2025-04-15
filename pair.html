@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cool Sessions - Pair User</title>
+</head>
+<body>
+  <h1>Pair User to Session</h1>
+  <form id="pairForm">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" required />
+    <button type="submit">Pair</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('pairForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const userId = document.getElementById('userId').value;
+      const sessionId = generateSessionId();
+      document.getElementById('result').textContent = `Session created: ${sessionId}`;
+
+      function generateSessionId(length = 24) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let id = '';
+        for (let i = 0; i < length; i++) {
+          id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
+      }
+    });
+  </script>
+</body>
+</html>
