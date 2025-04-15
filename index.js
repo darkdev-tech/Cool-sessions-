@@ -1,10 +1,22 @@
+const express = require('express');
 const sessions = require('./coolsessions');
+const app = express();
 
-// Example usage
-const userId = 'user_' + Math.floor(Math.random() * 1000);
-const sessionId = sessions.createSession(userId);
+app.use(express.json());
 
-console.log(`Session created for ${userId}: ${sessionId}`);
+app.get('/', (req, res) => {
+  res.send('Cool Sessions is running!');
+});
 
-const fetched = sessions.getSession(userId);
-console.log(`Fetched session: ${fetched}`);
+app.post('/pair', (req, res) => {
+  const { userId } = req.body;
+  if (!userId) return res.status(400).send('Missing userId');
+
+  const sessionId = sessions.createSession(userId);
+  res.json({ userId, sessionId });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Cool Sessions live at http://localhost:${PORT}`);
+});
